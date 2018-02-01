@@ -1,16 +1,21 @@
 package ru.zzzadruga.model;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
+@Entity
+@Table(catalog = "library")
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Book")
+@Getter @Setter
+@DynamicUpdate
+@DynamicInsert
+@SelectBeforeUpdate
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

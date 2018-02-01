@@ -21,6 +21,7 @@ public class BookDAOImpl implements BookDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public List<Book> list() {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
