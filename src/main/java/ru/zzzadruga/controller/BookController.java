@@ -2,10 +2,7 @@ package ru.zzzadruga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.zzzadruga.model.Book;
 import ru.zzzadruga.service.BookService;
@@ -19,9 +16,30 @@ public class BookController {
     private BookService bookService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView validateUser() {
+    public ModelAndView booksList() {
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("bookslist", bookService.listBooks());
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView bookAdd() {
+        ModelAndView modelAndView = new ModelAndView("add");
+        modelAndView.addObject("addBook", new Book());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkBook(@ModelAttribute("addBook") Book book) {
+        String info;
+        if (book.getId() == 0) {
+            bookService.addBook(book);
+            info = "added";
+        } else {
+            bookService.updateBook(book);
+            info = "updated";
+        }
+        return "book " + info;
     }
 }
