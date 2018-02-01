@@ -1,4 +1,6 @@
-<%--
+<%@ page import="ru.zzzadruga.model.Book" %>
+<%@ page import="java.util.List" %>
+<%@ page import="ru.zzzadruga.controller.BookController" %><%--
   Created by IntelliJ IDEA.
   User: Nikolai
   Date: 01.02.2018
@@ -14,18 +16,13 @@
 <body>
 
 <h2>List of available products</h2>
-
-<!-- div for apply styling to table  -->
 <div class="datagrid">
     <table>
         <tr>
             <th>Product ID</th>
             <th>Product Title</th>
         </tr>
-
-        <!-- loop over and print our customers -->
-        <c:forEach var="book" items="${books}">
-
+        <c:forEach var="book" items="${bookslist}">
             <tr>
                 <td>${book.id}</td>
                 <td>${book.title}</td>
