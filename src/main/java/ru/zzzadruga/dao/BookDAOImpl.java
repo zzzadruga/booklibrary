@@ -21,6 +21,14 @@ public class BookDAOImpl implements BookDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public void addBook(Book book) {
+
+    }
+
+    public void updateBook(Book book) {
+
+    }
+
     @Transactional
     public List<Book> list() {
         Session session = sessionFactory.getCurrentSession();
@@ -30,5 +38,13 @@ public class BookDAOImpl implements BookDAO {
         cq.select(root);
         Query<Book> query = session.createQuery(cq);
         return query.getResultList();
+    }
+
+    public Book getBookById(int id) {
+        return null;
+    }
+
+    public void removeBook(int id) {
+
     }
 }
