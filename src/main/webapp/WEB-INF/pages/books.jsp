@@ -19,13 +19,23 @@
 <div class="datagrid">
     <table>
         <tr>
-            <th>Product ID</th>
-            <th>Product Title</th>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Print year</th>
+            <th>Read already</th>
         </tr>
         <c:forEach var="book" items="${bookslist}">
             <tr>
                 <td>${book.id}</td>
                 <td>${book.title}</td>
+                <td>${book.description}</td>
+                <td>${book.author}</td>
+                <td>${book.isbn}</td>
+                <td>${book.printYear}</td>
+                <td>${book.readAlready}</td>
             </tr>
 
         </c:forEach>
