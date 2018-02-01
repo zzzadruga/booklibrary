@@ -11,4 +11,5 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <import resource="hibernate-config.xml"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 </beans>

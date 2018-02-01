@@ -38,6 +38,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <!-- Step 4: Enable transactional behavior based on annotations -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

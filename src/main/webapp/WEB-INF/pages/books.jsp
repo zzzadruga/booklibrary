@@ -1,17 +1,9 @@
-<%@ page import="ru.zzzadruga.model.Book" %>
-<%@ page import="java.util.List" %>
-<%@ page import="ru.zzzadruga.controller.BookController" %><%--
-  Created by IntelliJ IDEA.
-  User: Nikolai
-  Date: 01.02.2018
-  Time: 15:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Books list</title>
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" >
 </head>
 <body>
 
