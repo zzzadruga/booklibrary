@@ -1,10 +1,12 @@
 package ru.zzzadruga.dao;
 
+import org.springframework.stereotype.Repository;
 import ru.zzzadruga.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookDAOImpl implements BookDAO {
     public List<Book> getAllBooks() {
         List<Book> list = new ArrayList<Book>();
