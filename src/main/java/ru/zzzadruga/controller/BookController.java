@@ -21,7 +21,7 @@ public class BookController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView validateUser() {
         ModelAndView modelAndView = new ModelAndView("books");
-        modelAndView.addObject("bookslist", bookService.getAllBooks());
+        modelAndView.addObject("bookslist", bookService.listBooks());
         return modelAndView;
     }
 }
