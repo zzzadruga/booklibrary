@@ -7,8 +7,8 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 
-@Entity
-@Table(catalog = "library")
+@Entity(name = "book")
+@Table(name = "book")
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +16,7 @@ import javax.persistence.*;
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
+@ToString
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

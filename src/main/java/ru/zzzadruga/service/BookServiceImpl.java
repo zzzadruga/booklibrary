@@ -9,13 +9,11 @@ import ru.zzzadruga.model.Book;
 import java.util.List;
 
 @Service
-@Transactional(transactionManager = "txManager")
 public class BookServiceImpl implements BookService{
 
     @Autowired
     private BookDAO bookDAO;
 
-    @Transactional
     public List<Book> getAllBooks() {
         return bookDAO.list();
     }
