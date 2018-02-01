@@ -1,29 +1,33 @@
 package ru.zzzadruga.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.zzzadruga.model.Book;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class BookDAOImpl implements BookDAO {
-    public List<Book> getAllBooks() {
-        List<Book> list = new ArrayList<Book>();
-        list.add(new Book(
-                1,
-                "Зеленая миля",
-                "Роман-событие, ставший лауреатом премии Брэма Стокера и вдохновивший Фрэнка Дарабонта на создание культового фильма, в котором Том Хэнкс сыграл, возможно, свою лучшую роль.",
-                "Стивен Кинг",
-                "978-5-17-103631-7",
-                2017, false));
-        list.add(new Book(
-                2,
-                "Гарри Поттер и узник Азкабана",
-                "«Добро пожаловать в «ГрандУлет», спасательный экипаж для колдунов и ведьм, оказавшихся в затруднительном положении.",
-                "Дж. К. Роулинг",
-                "978-1-78110-190-2",
-                2017, false));
-        return list;
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public List<Book> list() {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+        Root<Book> root = cq.from(Book.class);
+        cq.select(root);
+        Query<Book> query = session.createQuery(cq);
+        return query.getResultList();
     }
 }

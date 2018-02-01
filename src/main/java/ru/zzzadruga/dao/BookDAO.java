@@ -5,5 +5,5 @@ import ru.zzzadruga.model.Book;
 import java.util.List;
 
 public interface BookDAO {
-    List<Book> getAllBooks();
+    List<Book> list();
 }
