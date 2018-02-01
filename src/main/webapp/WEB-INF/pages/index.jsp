@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-Hello!
+Books list on page <a href="/books/list">books/list</a>
 </body>
 </html>
