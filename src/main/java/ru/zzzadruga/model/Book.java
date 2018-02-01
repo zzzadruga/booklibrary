@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "Book")
 public class Book {
     @Id
