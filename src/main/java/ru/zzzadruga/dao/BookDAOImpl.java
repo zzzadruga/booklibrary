@@ -47,7 +47,7 @@ public class BookDAOImpl implements BookDAO {
     @Transactional
     public Book getBookById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Book book = (Book) session.load(Book.class, id);
+        Book book = session.get(Book.class, id);
         return book;
     }
 
