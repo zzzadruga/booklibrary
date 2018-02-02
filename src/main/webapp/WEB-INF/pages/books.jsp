@@ -41,23 +41,25 @@
             </header>
             <table>
                 <tr>
-                    <th>ID</th>
+                    <%--<th>ID</th>--%>
                     <th>Название</th>
                     <th>Краткое описание</th>
                     <th>Автор</th>
                     <th>ISBN</th>
                     <th>Дата печати</th>
                     <th>Прочтена?</th>
+                    <th>rm</th>
                 </tr>
                 <c:forEach var="book" items="${bookslist}">
                     <tr>
-                        <td>${book.id}</td>
+                        <%--<td>${book.id}</td>--%>
                         <td>${book.title}</td>
                         <td>${book.description}</td>
                         <td>${book.author}</td>
                         <td>${book.isbn}</td>
                         <td>${book.printYear}</td>
                         <td>${book.readAlready}</td>
+                        <td><a href="<c:url value='/books/remove/${book.id}' />">Delete</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -72,14 +74,14 @@
             <br>
             <form:form modelAttribute="bookModel" method="post" action="/books/addBook">
                 <div class="row">
-                    <div class="6u 12u">
+                    <%--<div class="6u 12u">
                         <form:select name="id" path="id">
                             <c:forEach var="book" items="${bookslist}">
                                 <form:option value="${book.id}">${book.title}</form:option>
                             </c:forEach>
                         </form:select>
-                    </div>
-                    <div class="6u 12u"><form:input path="title" placeholder="Название" type="text"/></div><br>
+                    </div>--%>
+                    <div class="12u 12u"><form:input path="title" placeholder="Название" type="text"/></div><br>
                     <div class="6u 12u"><form:input path="author" placeholder="Автор" type="text"/></div><br>
                     <div class="6u 12u"><form:input path="isbn" placeholder="ISBN" type="text"/></div><br>
                     <div class="6u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
