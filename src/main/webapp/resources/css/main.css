@@ -1570,7 +1570,7 @@
 			animation: none !important;
 		}
 
-	input, textarea, select {
+	input, textarea, select, button {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 19pt;
 		font-weight: 300;
@@ -2272,7 +2272,7 @@
 
 		/* Basic */
 
-			body, input, textarea, select {
+			body, input, textarea, select, button {
 				font-size: 17pt;
 			}
 
@@ -2318,7 +2318,7 @@
 
 		/* Basic */
 
-			body, input, textarea, select {
+			body, input, textarea, select, button {
 				font-size: 16pt;
 			}
 
@@ -2393,7 +2393,7 @@
 				overflow-x: hidden;
 			}
 
-			body, input, textarea, select {
+			body, input, textarea, select, button {
 				font-size: 16pt;
 			}
 
@@ -2576,7 +2576,7 @@
 
 		/* Basic */
 
-			body, input, textarea, select {
+			body, input, textarea, select, button {
 				font-size: 14pt;
 			}
 
