@@ -41,7 +41,6 @@
             </header>
             <table>
                 <tr>
-                    <%--<th>ID</th>--%>
                     <th>Название</th>
                     <th>Краткое описание</th>
                     <th>Автор</th>
@@ -52,7 +51,6 @@
                 </tr>
                 <c:forEach var="book" items="${bookslist}">
                     <tr>
-                        <%--<td>${book.id}</td>--%>
                         <td>${book.title}</td>
                         <td>${book.description}</td>
                         <td>${book.author}</td>
@@ -69,54 +67,35 @@
     <section id="add" class="four">
         <div class="container">
             <header>
-                <h2>Добавление</h2>
+                <c:if test="${empty bookModel.author}">
+                    <h2>Добавление книги</h2>
+                </c:if>
+                <c:if test="${!empty bookModel.author}">
+                    <h2>Обновление книги</h2>
+                </c:if>
             </header>
-            <br>
             <form:form modelAttribute="bookModel" method="post" action="/books/addBook">
                 <div class="row">
-                    <%--<div class="6u 12u">
-                        <form:select name="id" path="id">
-                            <c:forEach var="book" items="${bookslist}">
-                                <form:option value="${book.id}">${book.title}</form:option>
-                            </c:forEach>
-                        </form:select>
-                    </div>--%>
                     <div class="12u 12u"><form:input path="title" placeholder="Название" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="author" placeholder="Автор" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="isbn" placeholder="ISBN" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="readAlready" placeholder="Прочтена?" type="text"/></div><br>
+                    <c:if test="${empty bookModel.author}">
+                        <div class="4u 12u"><form:input path="author" placeholder="Автор" type="text"/></div><br>
+                    </c:if>
+                    <c:if test="${!empty bookModel.author}">
+                        <div class="4u 12u"><form:input readonly="true" path="author" placeholder="Автор" type="text"/></div><br>
+                    </c:if>
+                    <div class="4u 12u"><form:input path="isbn" placeholder="ISBN" type="text"/></div><br>
+                    <div class="4u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
                     <div class="12u 12u"><form:textarea path="description" placeholder="Описание" type="text"></form:textarea></div><br>
-                    <div class="12u"><button>Добавить</button></div>
+                    <c:if test="${empty bookModel.author}">
+                        <div class="12u"><button>Добавить</button></div>
+                    </c:if>
+                    <c:if test="${!empty bookModel.author}">
+                        <div class="12u"><button>Обновить</button></div>
+                    </c:if>
                 </div>
             </form:form>
         </div>
     </section>
-    <%--<section id="edit" class="four">
-        <div class="container">
-            <header>
-                <h2>Редактирование</h2>
-            </header>
-            <div class="add-value">Выберите книгу из левого списка для редактирования</div>
-            <br>
-            <form modelAttribute="bookModel" method="post" action="/books/addBook">
-                <div class="row">
-                    <div class="6u 12u">
-                        <select name="title">
-                            <c:forEach var="book" items="${bookslist}">
-                                <option value="${book.id}">${book.title}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="6u 12u"><form:input path="title" placeholder="Новое название" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="isbn" placeholder="ISBN" type="text"/></div><br>
-                    <div class="6u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
-                    <div class="12u 12u"><form:textarea path="description" placeholder="Описание" type="text"></form:textarea></div><br>
-                    <div class="12u"><button>Обновить</button></div>
-                </div>
-            </form>
-        </div>
-    </section>--%>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.scrolly.min.js"></script>

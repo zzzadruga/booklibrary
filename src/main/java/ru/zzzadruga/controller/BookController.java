@@ -13,7 +13,7 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, headers = "Accept=application/json")
     public String booksList(Model model) {
         model.addAttribute("bookModel", new Book());
         model.addAttribute("bookslist", bookService.listBooks());
@@ -32,5 +32,12 @@ public class BookController {
     public String removeBook(@PathVariable("id") int id) {
         bookService.removeBook(id);
         return "redirect:/books/list";
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String editPerson(@PathVariable("id") int id, Model model) {
+        model.addAttribute("bookModel", this.bookService.getBookById(id));
+        model.addAttribute("bookslist", this.bookService.listBooks());
+        return "books";
     }
 }

@@ -25,6 +25,6 @@ public class Book {
     private String description;
     private String author;
     private String isbn;
-    private int printYear;
-    private boolean readAlready;
+    private Integer printYear;
+    private Boolean readAlready;
 }
