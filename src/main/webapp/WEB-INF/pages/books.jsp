@@ -50,7 +50,7 @@
                     <th>Автор</th>
                     <th>ISBN</th>
                     <th>Дата печати</th>
-                    <th>Прочтена?</th>
+                    <th>Функции</th>
                 </tr>
                 <c:forEach var="book" items="${bookslist}">
                     <tr>
@@ -59,9 +59,16 @@
                         <td>${book.author}</td>
                         <td>${book.isbn}</td>
                         <td>${book.printYear}</td>
-                        <td>${book.readAlready}
-                        <br><a href="<c:url value='/books/edit/${book.id}#add' />"><span class="icon fa-edit"/></a>
-                        <a href="<c:url value='/books/remove/${book.id}' />"><span class="icon fa-trash"/></a></td>
+                        <td>
+                            <c:if test="${book.readAlready}">
+                                <span class="icon fa-check-square"/>
+                            </c:if>
+                            <c:if test="${not book.readAlready}">
+                                <a href="/books/read/${book.id}"  class="skel-layers-ignoreHref"><span class="icon fa-square-o"/></a>
+                            </c:if>
+                            <a href="<c:url value='/books/remove/${book.id}' />"><span class="icon fa-trash"/></a>
+                            <a href="<c:url value='/books/edit/${book.id}#add' />"><span class="icon fa-edit"/></a>
+                        </td>
 
                     </tr>
                 </c:forEach>

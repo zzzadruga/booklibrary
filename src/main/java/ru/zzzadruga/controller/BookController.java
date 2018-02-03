@@ -35,9 +35,17 @@ public class BookController {
     }
 
     @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
-    public String editPerson(@PathVariable("id") int id, Model model) {
+    public String editBook(@PathVariable("id") int id, Model model) {
         model.addAttribute("bookModel", this.bookService.getBookById(id));
         model.addAttribute("bookslist", this.bookService.listBooks());
         return "books";
+    }
+
+    @RequestMapping(value = "/read/{id}", produces = "text/plain;charset=UTF-8")
+    public String readBook(@PathVariable("id") int id) {
+        Book book = bookService.getBookById(id);
+        book.setReadAlready(true);
+        bookService.updateBook(book);
+        return "redirect:/books/list";
     }
 }
