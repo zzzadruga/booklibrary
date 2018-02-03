@@ -30,7 +30,7 @@
     </div>
 </div>
 <div id="main">
-    <section id="list" class="one dark cover">
+    <section class="one dark cover">
         <div class="container">
             <header>
                 <h2>CRUD</h2>
@@ -38,7 +38,7 @@
             <p>У вас есть всего 1 таблица book. В ней хранится список книг (например, на книжной полке). Книги на полку можно добавлять (create), брать посмотреть (read), заменять на новый выпуск (update), убирать (delete).</p>
         </div>
     </section>
-    <section id="bookslist" class="three">
+    <section id="list" class="three">
         <div class="container">
             <header>
                 <h2>Список книг</h2>
@@ -97,7 +97,7 @@
                         <div class="4u 12u"><form:input readonly="true" path="author" placeholder="Автор" type="text"/></div>
                     </c:if>
                     <div class="4u 12u"><form:input path="isbn" placeholder="ISBN" type="text" maxlength="20"/></div>
-                    <div class="4u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
+                    <div class="4u 12u"><form:input path="printYear" placeholder="Год издания" type="text" pattern="\d*" maxlength="4"/></div><br>
                     <div class="12u 12u"><form:textarea path="description" placeholder="Описание" type="text" maxlength="255"></form:textarea></div><br>
                     <c:if test="${empty bookModel.author}">
                         <div class="12u"><button>Добавить</button></div>

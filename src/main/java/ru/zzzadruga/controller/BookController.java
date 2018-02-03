@@ -25,13 +25,13 @@ public class BookController {
         System.out.println(book.toString());
         if (book.getId () == 0) { bookService.addBook(book);  }
         else {bookService.updateBook(book); }
-        return "redirect:/books/list";
+        return "redirect:/books/list#list";
     }
 
     @RequestMapping(value = "/remove/{id}", produces = "text/plain;charset=UTF-8")
     public String removeBook(@PathVariable("id") int id) {
         bookService.removeBook(id);
-        return "redirect:/books/list";
+        return "redirect:/books/list#list";
     }
 
     @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
@@ -46,6 +46,6 @@ public class BookController {
         Book book = bookService.getBookById(id);
         book.setReadAlready(true);
         bookService.updateBook(book);
-        return "redirect:/books/list";
+        return "redirect:/books/list#list";
     }
 }
