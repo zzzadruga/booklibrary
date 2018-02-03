@@ -13,14 +13,14 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String booksList(Model model) {
         model.addAttribute("bookModel", new Book());
         model.addAttribute("bookslist", bookService.listBooks());
         return "books";
     }
 
-    @RequestMapping(value = "/addBook", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "/addBook", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
     public String addBook(@ModelAttribute("bookModel") Book book) {
         System.out.println(book.toString());
         if (book.getId () == 0) { bookService.addBook(book);  }
@@ -28,13 +28,13 @@ public class BookController {
         return "redirect:/books/list";
     }
 
-    @RequestMapping(value = "/remove/{id}")
+    @RequestMapping(value = "/remove/{id}", produces = "text/plain;charset=UTF-8")
     public String removeBook(@PathVariable("id") int id) {
         bookService.removeBook(id);
         return "redirect:/books/list";
     }
 
-    @RequestMapping("/edit/{id}")
+    @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
     public String editPerson(@PathVariable("id") int id, Model model) {
         model.addAttribute("bookModel", this.bookService.getBookById(id));
         model.addAttribute("bookslist", this.bookService.listBooks());
