@@ -8,7 +8,7 @@ import ru.zzzadruga.model.Book;
 import ru.zzzadruga.service.BookService;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping(value = {"/", "/books"})
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -24,7 +24,7 @@ public class BookController {
     public String addBook(@ModelAttribute("bookModel") Book book) {
         System.out.println(book.toString());
         if (book.getId () == 0) { bookService.addBook(book);  }
-        else { bookService.updateBook(book); }
+        else {bookService.updateBook(book); }
         return "redirect:/books/list";
     }
 

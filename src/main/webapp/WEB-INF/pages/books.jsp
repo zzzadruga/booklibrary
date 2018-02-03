@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -17,10 +17,14 @@
         </div>
         <nav id="nav">
             <ul>
-                <li><a href="#main" id="main-link" class="skel-layers-ignoreHref"><span class="icon fa-star">Главная</span></a></li>
-                <li><a href="#list" id="book-list-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Книги</span></a></li>
-                <li><a href="#add" id="add-book-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Добавить</span></a></li>
-                <li><a href="#edit" id="edit-book-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Редактировать</span></a></li>
+                <li><a href="/books/list" id="main-link" class="skel-layers-ignoreHref"><span class="icon fa-star">Главная</span></a></li>
+                <li><a href="#list" id="book-list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">Книги</span></a></li>
+                <c:if test="${empty bookModel.author}">
+                    <li><a href="#add" id="add-book-link" class="skel-layers-ignoreHref"><span class="icon fa-plus-square">Добавить</span></a></li>
+                </c:if>
+                <c:if test="${!empty bookModel.author}">
+                    <li><a href="#add" id="add-book-link" class="skel-layers-ignoreHref"><span class="icon fa-edit">Редактировать</span></a></li>
+                </c:if>
             </ul>
         </nav>
     </div>
@@ -47,7 +51,6 @@
                     <th>ISBN</th>
                     <th>Дата печати</th>
                     <th>Прочтена?</th>
-                    <th>rm</th>
                 </tr>
                 <c:forEach var="book" items="${bookslist}">
                     <tr>
@@ -56,8 +59,10 @@
                         <td>${book.author}</td>
                         <td>${book.isbn}</td>
                         <td>${book.printYear}</td>
-                        <td>${book.readAlready}</td>
-                        <td><a href="<c:url value='/books/remove/${book.id}' />">Delete</a></td>
+                        <td>${book.readAlready}
+                        <br><a href="<c:url value='/books/edit/${book.id}#add' />"><span class="icon fa-edit"/></a>
+                        <a href="<c:url value='/books/remove/${book.id}' />"><span class="icon fa-trash"/></a></td>
+
                     </tr>
                 </c:forEach>
             </table>
@@ -74,18 +79,19 @@
                     <h2>Обновление книги</h2>
                 </c:if>
             </header>
-            <form:form modelAttribute="bookModel" method="post" action="/books/addBook">
+            <form:form modelAttribute="bookModel" method="post" action="/books/addBook"  accept-charset="utf-8">
                 <div class="row">
-                    <div class="12u 12u"><form:input path="title" placeholder="Название" type="text"/></div><br>
+                    <form:input path="id" placeholder="ID" type="hidden" maxlength="100"/>
+                    <div class="12u 12u"><form:input path="title" placeholder="Название" type="text" maxlength="100"/></div><br>
                     <c:if test="${empty bookModel.author}">
-                        <div class="4u 12u"><form:input path="author" placeholder="Автор" type="text"/></div><br>
+                        <div class="4u 12u"><form:input path="author" placeholder="Автор" type="text" maxlength="100"/></div>
                     </c:if>
                     <c:if test="${!empty bookModel.author}">
-                        <div class="4u 12u"><form:input readonly="true" path="author" placeholder="Автор" type="text"/></div><br>
+                        <div class="4u 12u"><form:input readonly="true" path="author" placeholder="Автор" type="text"/></div>
                     </c:if>
-                    <div class="4u 12u"><form:input path="isbn" placeholder="ISBN" type="text"/></div><br>
+                    <div class="4u 12u"><form:input path="isbn" placeholder="ISBN" type="text" maxlength="20"/></div>
                     <div class="4u 12u"><form:input path="printYear" placeholder="Год издания" type="text"/></div><br>
-                    <div class="12u 12u"><form:textarea path="description" placeholder="Описание" type="text"></form:textarea></div><br>
+                    <div class="12u 12u"><form:textarea path="description" placeholder="Описание" type="text" maxlength="255"></form:textarea></div><br>
                     <c:if test="${empty bookModel.author}">
                         <div class="12u"><button>Добавить</button></div>
                     </c:if>
