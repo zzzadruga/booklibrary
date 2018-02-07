@@ -40,7 +40,7 @@ public class BookDAOImpl implements BookDAO {
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
         Root<Book> root = cq.from(Book.class);
         cq.select(root);
-        cq.where(cb.like(root.<String>get("author"), "%" + searchString + "%"));
+        cq.where(cb.or(cb.like(root.<String>get("author"), "%" + searchString + "%"), cb.like(root.<String>get("title"), "%" + searchString + "%")));
         Query<Book> query = session.createQuery(cq);
         return query.getResultList();
     }

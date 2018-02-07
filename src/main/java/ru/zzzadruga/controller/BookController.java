@@ -22,10 +22,10 @@ public class BookController {
     }
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
-    public String search(@RequestParam String searchString, Model model) {
-        System.out.println(searchString);
+    public String search(@RequestParam String s, Model model) {
+        System.out.println(s);
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", this.bookService.listBooks(searchString));
+        model.addAttribute("bookslist", this.bookService.listBooks(s));
         return "books";
     }
 
