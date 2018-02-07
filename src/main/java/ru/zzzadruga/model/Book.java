@@ -7,6 +7,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "book")
 @Table(name = "book")
@@ -18,10 +19,10 @@ import javax.persistence.*;
 @DynamicInsert
 @SelectBeforeUpdate
 @ToString
-public class Book {
+public class Book{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String title;
     private String description;
     private String author;
