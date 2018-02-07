@@ -44,6 +44,13 @@
             <header>
                 <h2>Список книг</h2>
             </header>
+            <form:form action="/books/search" method="GET">
+                <div class="row">
+                    <div class="8u 12u"><input type="text" name="searchString" placeholder="Поиск по автору и названию книги" /></div>
+                    <div class="4u 12u"><input type="submit" value="Найти" /></div>
+                </div>
+            </form:form>
+            <br>
             <table>
                 <tr>
                     <th>Название</th>

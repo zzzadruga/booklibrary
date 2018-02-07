@@ -34,12 +34,13 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Transactional
-    public List<Book> list() {
+    public List<Book> list(String searchString) {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
         Root<Book> root = cq.from(Book.class);
         cq.select(root);
+        cq.where(cb.like(root.<String>get("author"), "%" + searchString + "%"));
         Query<Book> query = session.createQuery(cq);
         return query.getResultList();
     }

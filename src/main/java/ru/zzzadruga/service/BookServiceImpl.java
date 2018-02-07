@@ -22,8 +22,8 @@ public class BookServiceImpl implements BookService{
         bookDAO.updateBook(book);
     }
 
-    public List<Book> listBooks() {
-        return bookDAO.list();
+    public List<Book> listBooks(String searchString) {
+        return bookDAO.list(searchString);
     }
 
     public Book getBookById(int id) {

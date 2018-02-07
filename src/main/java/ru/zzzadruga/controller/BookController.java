@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.zzzadruga.model.Book;
 import ru.zzzadruga.service.BookService;
 
@@ -16,7 +17,15 @@ public class BookController {
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String booksList(Model model) {
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", bookService.listBooks());
+        model.addAttribute("bookslist", bookService.listBooks(""));
+        return "books";
+    }
+
+    @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
+    public String search(@RequestParam String searchString, Model model) {
+        System.out.println(searchString);
+        model.addAttribute("bookModel", new Book());
+        model.addAttribute("bookslist", this.bookService.listBooks(searchString));
         return "books";
     }
 
@@ -36,8 +45,8 @@ public class BookController {
 
     @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
     public String editBook(@PathVariable("id") int id, Model model) {
-        model.addAttribute("bookModel", this.bookService.getBookById(id));
-        model.addAttribute("bookslist", this.bookService.listBooks());
+        model.addAttribute("bookModel", bookService.getBookById(id));
+        model.addAttribute("bookslist", bookService.listBooks(""));
         return "books";
     }
 
