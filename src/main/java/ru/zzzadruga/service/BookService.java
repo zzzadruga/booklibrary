@@ -9,6 +9,5 @@ public interface BookService {
     void save(Book book);
     Book getBookById(long id);
     void remove(long id);
-    List<Book> getPage(int pageNumber);
-    List<Book> findBooks(String searchString);
+    List<Book> getPage(int pageNumber, String searchString);
 }

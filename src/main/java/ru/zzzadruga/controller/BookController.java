@@ -17,15 +17,14 @@ public class BookController {
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String booksList(Model model) {
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", bookService.getPage(0));
+        model.addAttribute("bookslist", bookService.getPage(0, null));
         return "books";
     }
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
     public String search(@RequestParam String s, Model model) {
-        System.out.println(s);
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", bookService.findBooks(s));
+        model.addAttribute("bookslist", bookService.getPage(0, s));
         return "books";
     }
 
@@ -44,7 +43,7 @@ public class BookController {
     @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
     public String editBook(@PathVariable("id") int id, Model model) {
         model.addAttribute("bookModel", bookService.getBookById(id));
-        model.addAttribute("bookslist", bookService.getPage(0));
+        model.addAttribute("bookslist", bookService.getPage(0, null));
         return "books";
     }
 

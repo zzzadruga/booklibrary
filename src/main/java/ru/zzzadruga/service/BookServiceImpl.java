@@ -1,6 +1,7 @@
 package ru.zzzadruga.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
@@ -32,13 +33,10 @@ public class BookServiceImpl implements BookService{
         bookRepository.delete(id);
     }
 
-    public List<Book> getPage(int pageNumber) {
+    public List<Book> getPage(int pageNumber, String searchString) {
         PageRequest request = new PageRequest(pageNumber, PAGESIZE);
-        return bookRepository.findAll(request).getContent();
-    }
-
-    public List<Book> findBooks(String searchString){
-        return bookRepository.findBooksByAuthorLike("%" + searchString + "%");
+        Page<Book> page = (searchString != null ? bookRepository.findBooksByAuthorLike("%" + searchString + "%", request) : bookRepository.findAll(request));
+        return page.getContent();
     }
 
 }
