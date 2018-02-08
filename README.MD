@@ -1,34 +1,42 @@
-Задание:
 
-1. CRUD (create, read, update, delete).
+# Book Library
 
-У вас есть всего 1 таблица book. В ней хранится список книг (например, на книжной полке). Книги на полку можно добавлять (create), брать посмотреть (read), заменять на новый выпуск (update), убирать (delete).
-Данные, которые должны быть в таблице:
+A complete example for Spring MVC + Maven + Hibernate CRUD operation with search and pagination
 
-•	id - идентификатор книги в БД:
+# Running the Application
 
-•	title - название книги. Можно использовать тип YARC'HAR( 100):
++ Install Tomcat 8
++ Create user with role "manager-script" in %CATALINA_HOME%/conf/tomcat-users.xml 
+```
+<role rolename="manager-script"/>
+<user username="admin" password="password" roles="manager-script"/>
+```
++ Start Tomcat server. Run startup.bat in %CATALINA_HOME%/bin
++ Create server with name TomcatServer in Maven root directory %M2_HOME%/conf/settings.xml with your username and password
+```
+<server>
+   <id>TomcatServer</id>
+   <username>admin</username>
+   <password>password</password>
+</server>
+```
++ Install MySQL server and run query from "query.sql"
++ Download this project
+```
+git clone git://github.com/zzzadruga/booklibrary.git
+```
++ Go to the root project directory (booklibrary)
++ Run the following maven command to download all dependent JARs and deploy project on tomcat8 server
 
-•	description - краткое описание о чем книга. Можно использовать тип VARCHAR(255);
+```
+mvn tomcat8:deploy
+```
 
-•	author - фамилия и имя автора. Можно использовать тип VARC'HAR(IOO):
++ Go to the browser and enter the following URL: 
+```
+http://localhost:8080/booklibrary
+```
+The port number might be different in your case. Please have a look at the tomcat log in console for that.
 
-•	isbn - ISBN книги. Можно использовать тип YARC'HAR(20);
-
-•	printYear - в каком голу напечатана книга (INT):
-
-•	readAlready - читал ли кто-то эту книгу. Это булево поле.
-
-Бизнес-требование: при редактировании может быть 2 варианта повеление:
-
-•	Книгу прочитали, и тогда изменяется только поле readAlready. и только, если оно было false. Значения поля должно стать true.
-
-•	Книгу заменили на новое издание. В этом случае должна быть возможность изменить title, description, isbn. printYear. А поле readAlready нужно выставить в false. Поле author должно быть неизменяемым с момента создания книги.
-
-Необходимо реализовать стандартное CRUD приложение, которое отображаем список всех книг в базе (с пейджингом по 10 книг на странице). С возможностью их удаления, редактирования, добавления новых, и поиска по уже существующим.
-
-По какому полю искать - каждый решает для себя сам. Можно ограничиться полем title, но согласитесь, удобно просмотреть книги, которые еще не читал, или. которые вышли после 2016 года.
-
-Таблица в файле script.sql
 
 e-mail: zzzadruga@gmail.com
