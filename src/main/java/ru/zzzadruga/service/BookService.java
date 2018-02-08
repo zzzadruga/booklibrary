@@ -1,5 +1,6 @@
 package ru.zzzadruga.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import ru.zzzadruga.model.Book;
 
@@ -9,5 +10,5 @@ public interface BookService {
     void save(Book book);
     Book getBookById(long id);
     void remove(long id);
-    List<Book> getPage(int pageNumber, String searchString);
+    Page<Book> getPage(int pageNumber, String searchString);
 }

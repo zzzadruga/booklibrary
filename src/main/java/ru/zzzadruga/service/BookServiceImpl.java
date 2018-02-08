@@ -33,10 +33,10 @@ public class BookServiceImpl implements BookService{
         bookRepository.delete(id);
     }
 
-    public List<Book> getPage(int pageNumber, String searchString) {
+    public Page<Book> getPage(int pageNumber, String searchString) {
         PageRequest request = new PageRequest(pageNumber, PAGESIZE);
         Page<Book> page = (searchString != null ? bookRepository.findBooksByAuthorLike("%" + searchString + "%", request) : bookRepository.findAll(request));
-        return page.getContent();
+        return page;
     }
 
 }

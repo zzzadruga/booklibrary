@@ -1,6 +1,7 @@
 package ru.zzzadruga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,18 @@ public class BookController {
     private BookService bookService;
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String booksList(Model model) {
+    public String booksList(@RequestParam(name = "p", defaultValue = "1") int pageNumber, Model model) {
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", bookService.getPage(0, null));
+        Page<Book> page = bookService.getPage(pageNumber - 1, null);
+        int current = page.getNumber() + 1;
+        int begin = Math.max(1, current - 5);
+        int end = Math.min(begin + 10, page.getTotalPages());
+        int totalPages = page.getTotalPages();
+        model.addAttribute("beginIndex", begin);
+        model.addAttribute("endIndex", end);
+        model.addAttribute("currentIndex", current);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("bookslist", page.getContent());
         return "books";
     }
 
