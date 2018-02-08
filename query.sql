@@ -1,11 +1,17 @@
-USE TEST;
+DROP DATABASE IF EXISTS `test`;
+
+CREATE DATABASE `test`
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
+USE `test`;
 
 DROP TABLE IF EXISTS `book`;
 
 CREATE TABLE `book`(
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NOT NULL,
-  `descritpion` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
   `author` VARCHAR(100) NOT NULL,
   `isbn` VARCHAR(20) NOT NULL,
   `printYear` INT NOT NULL,
@@ -14,7 +20,7 @@ CREATE TABLE `book`(
 )
   DEFAULT CHARACTER SET = utf8;
 
-INSERT INTO `book`(`title`, description, `author`, `isbn`, `printYear`)
+INSERT INTO `book`(`title`, `description`, `author`, `isbn`, `printYear`)
 VALUES   ('Гарри Поттер и узник Азкабана', '«Добро пожаловать в «ГрандУлет», спасательный экипаж для колдунов и ведьм, оказавшихся в затруднительном положении.', 'Дж. К. Роулинг', '978-1-78110-190-2', 2017),
          ('Зеленая миля', 'Роман-событие, ставший лауреатом премии Брэма Стокера и вдохновивший Фрэнка Дарабонта на создание культового фильма, в котором Том Хэнкс сыграл, возможно, свою лучшую роль.', 'Стивен Кинг', '978-5-17-103631-7', 2017),
          ('Унесенные ветром', 'Эта книга стала самой популярной и самой любимой для нескольких поколений женщин, и ничего равного ей не создано по сей день.', 'Маргарет Митчелл', '5-17-041108-1', 2007),
