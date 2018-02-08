@@ -3,15 +3,9 @@ package ru.zzzadruga.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ru.zzzadruga.repository.BookRepository;
 import ru.zzzadruga.model.Book;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -19,7 +13,7 @@ public class BookServiceImpl implements BookService{
     @Autowired
     private BookRepository bookRepository;
 
-    private final static int PAGESIZE = 3;
+    private final static int PAGESIZE = 10;
 
     public void save(Book book) {
         bookRepository.save(book);
@@ -35,7 +29,7 @@ public class BookServiceImpl implements BookService{
 
     public Page<Book> getPage(int pageNumber, String searchString) {
         PageRequest request = new PageRequest(pageNumber, PAGESIZE);
-        Page<Book> page = (searchString != null ? bookRepository.findBooksByAuthorLike("%" + searchString + "%", request) : bookRepository.findAll(request));
+        Page<Book> page = (searchString != null ? bookRepository.findBooksByAuthorLikeOrTitleLike("%" + searchString + "%", "%" + searchString + "%", request) : bookRepository.findAll(request));
         return page;
     }
 

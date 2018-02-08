@@ -9,5 +9,5 @@ import ru.zzzadruga.model.Book;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Page<Book> findBooksByAuthorLike(String searchString, Pageable pageable);
+    Page<Book> findBooksByAuthorLikeOrTitleLike(String searchAuthorString, String searchTitleString,Pageable pageable);
 }

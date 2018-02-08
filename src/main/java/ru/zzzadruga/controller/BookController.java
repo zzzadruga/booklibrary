@@ -50,7 +50,7 @@ public class BookController {
     @RequestMapping(value = "/edit/{id}", produces = "text/plain;charset=UTF-8")
     public String editBook(@PathVariable("id") int id, Model model) {
         model.addAttribute("bookModel", bookService.getBookById(id));
-        model.addAttribute("bookslist", bookService.getPage(0, null));
+        model.addAttribute("bookslist", bookService.getPage(0, null).getContent());
         return "books";
     }
 
