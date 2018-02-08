@@ -25,7 +25,7 @@ public class BookController {
     public String search(@RequestParam String s, Model model) {
         System.out.println(s);
         model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", this.bookService.getPage(0));
+        model.addAttribute("bookslist", bookService.findBooks(s));
         return "books";
     }
 

@@ -36,4 +36,9 @@ public class BookServiceImpl implements BookService{
         PageRequest request = new PageRequest(pageNumber, PAGESIZE);
         return bookRepository.findAll(request).getContent();
     }
+
+    public List<Book> findBooks(String searchString){
+        return bookRepository.findBooksByAuthorLike("%" + searchString + "%");
+    }
+
 }
