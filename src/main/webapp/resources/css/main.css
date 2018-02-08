@@ -1634,7 +1634,6 @@
 	a {
 		text-decoration: none;
 		color: inherit;
-		border-bottom: dotted 1px rgba(128, 128, 128, 0.5);
 		-moz-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
 		-webkit-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
 		-ms-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
@@ -1642,10 +1641,10 @@
 		outline: 0;
 	}
 
-		a:hover {
-			color: #ffffff;
-			border-bottom-color: rgba(255, 255, 255, 0);
-		}
+	a:hover {
+		color: #8ebebc;
+		border-bottom-color: rgba(255, 255, 255, 0);
+	}
 
 	sub {
 		position: relative;
@@ -2644,3 +2643,37 @@ td {border: 1px solid grey;}
     margin-right: 10%; /* Отступы справа */
     text-align:center; /* Выравнивание слева */
 }
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+	border-radius: 0.35em;
+	background-color: #8ebebc; 
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+	background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+	-moz-transition: background-color 0.35s ease-in-out;
+	-webkit-transition: background-color 0.35s ease-in-out;
+	-ms-transition: background-color 0.35s ease-in-out;
+	transition: background-color 0.35s ease-in-out;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+	
+	background-color: #7eaeac;

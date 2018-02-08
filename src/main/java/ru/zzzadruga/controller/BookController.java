@@ -17,12 +17,12 @@ public class BookController {
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String booksList(@RequestParam(name = "p", defaultValue = "1") int pageNumber, Model model) {
-        model.addAttribute("bookModel", new Book());
         Page<Book> page = bookService.getPage(pageNumber - 1, null);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
         int totalPages = page.getTotalPages();
+        model.addAttribute("bookModel", new Book());
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);

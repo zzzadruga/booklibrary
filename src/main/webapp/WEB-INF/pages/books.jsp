@@ -2,10 +2,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
-<c:url var="firstUrl" value="/books/list?p=1" />
-<c:url var="lastUrl" value="/books/list?p=${totalPages}" />
-<c:url var="prevUrl" value="/books/list?p=${currentIndex - 1}" />
-<c:url var="nextUrl" value="/books/list?p=${currentIndex + 1}" />
+<c:url var="firstUrl" value="/books/list?p=1#list" />
+<c:url var="lastUrl" value="/books/list?p=${totalPages}#list" />
+<c:url var="prevUrl" value="/books/list?p=${currentIndex - 1}#list" />
+<c:url var="nextUrl" value="/books/list?p=${currentIndex + 1}#list" />
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -89,33 +89,33 @@
                 <ul>
                     <c:choose>
                         <c:when test="${currentIndex == 1}">
-                            <li class="disabled"><a href="#">&lt;&lt;</a></li>
-                            <li class="disabled"><a href="#">&lt;</a></li>
+                            <a href="#">&lt;&lt;</a>
+                            <a href="#">&lt;</a>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="${firstUrl}">&lt;&lt;</a></li>
-                            <li><a href="${prevUrl}">&lt;</a></li>
+                            <a href="${firstUrl}">&lt;&lt;</a>
+                            <a href="${prevUrl}">&lt;</a>
                         </c:otherwise>
                     </c:choose>
                     <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-                        <c:url var="pageUrl" value="/books/list?p=${i}" />
+                        <c:url var="pageUrl" value="/books/list?p=${i}#list" />
                         <c:choose>
                             <c:when test="${i == currentIndex}">
-                                <li class="active"><a href="${pageUrl}"><c:out value="${i}" /></a></li>
+                                <a href="${pageUrl}" style="background-color: #c0d5d4;"><c:out value="${i}" /></a>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="${pageUrl}"><c:out value="${i}" /></a></li>
+                                <a href="${pageUrl}"><c:out value="${i}" /></a>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:choose>
                         <c:when test="${currentIndex == totalPages}">
-                            <li class="disabled"><a href="#">&gt;</a></li>
-                            <li class="disabled"><a href="#">&gt;&gt;</a></li>
+                            <a href="#">&gt;</a>
+                            <a href="#">&gt;&gt;</a>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="${nextUrl}">&gt;</a></li>
-                            <li><a href="${lastUrl}">&gt;&gt;</a></li>
+                            <a href="${nextUrl}">&gt;</a>
+                            <a href="${lastUrl}">&gt;&gt;</a>
                         </c:otherwise>
                     </c:choose>
                 </ul>
