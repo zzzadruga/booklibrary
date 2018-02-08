@@ -2,10 +2,16 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
-<c:url var="firstUrl" value="/books/list?p=1#list" />
-<c:url var="lastUrl" value="/books/list?p=${totalPages}#list" />
-<c:url var="prevUrl" value="/books/list?p=${currentIndex - 1}#list" />
-<c:url var="nextUrl" value="/books/list?p=${currentIndex + 1}#list" />
+<c:if test="${empty searchString}">
+    <c:set var="prefix" value=""/>
+</c:if>
+<c:if test="${not empty searchString}">
+    <c:set var="prefix" value="&s="/>
+</c:if>
+<c:url var="firstUrl" value="/books/list?p=1${prefix}${searchString}#list" />
+<c:url var="lastUrl" value="/books/list?p=${totalPages}${prefix}${searchString}#list" />
+<c:url var="prevUrl" value="/books/list?p=${currentIndex - 1}${prefix}${searchString}#list" />
+<c:url var="nextUrl" value="/books/list?p=${currentIndex + 1}${prefix}${searchString}#list" />
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -48,12 +54,20 @@
             <header>
                 <h2>Список книг</h2>
             </header>
-            <form:form action="/books/search" method="GET">
+            <form modelAttribute="searchString" action="/books/list" method="get">
                 <div class="row">
-                    <div class="8u 12u"><input type="text" name="s" placeholder="Поиск по автору и названию книги" /></div>
+                    <div class="8u 12u">
+                    <c:if test="${empty searchString}">
+                        <input type="text" name="s" placeholder="Поиск по автору и названию книги" />
+                    </c:if>
+                    <c:if test="${not empty searchString}">
+                        <input type="text" name="s" placeholder="Поиск по фразе: ${searchString}" />
+                    </c:if>
+                    </div>
                     <div class="4u 12u"><input type="submit" value="Найти" /></div>
+
                 </div>
-            </form:form>
+            </form>
             <br>
             <table>
                 <tr>
@@ -98,7 +112,7 @@
                         </c:otherwise>
                     </c:choose>
                     <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-                        <c:url var="pageUrl" value="/books/list?p=${i}#list" />
+                        <c:url var="pageUrl" value="/books/list?p=${i}${prefix}${searchString}#list" />
                         <c:choose>
                             <c:when test="${i == currentIndex}">
                                 <a href="${pageUrl}" style="background-color: #c0d5d4;"><c:out value="${i}" /></a>

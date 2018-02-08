@@ -16,8 +16,11 @@ public class BookController {
     private BookService bookService;
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-    public String booksList(@RequestParam(name = "p", defaultValue = "1") int pageNumber, Model model) {
-        Page<Book> page = bookService.getPage(pageNumber - 1, null);
+    public String booksList(@RequestParam(name = "s", defaultValue = "") String s,
+                            @RequestParam(name = "p", defaultValue = "1") int pageNumber,
+                            Model model) {
+        s = s.trim();
+        Page<Book> page = bookService.getPage(pageNumber - 1, s);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
@@ -27,14 +30,8 @@ public class BookController {
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("searchString", s);
         model.addAttribute("bookslist", page.getContent());
-        return "books";
-    }
-
-    @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
-    public String search(@RequestParam String s, Model model) {
-        model.addAttribute("bookModel", new Book());
-        model.addAttribute("bookslist", bookService.getPage(0, s));
         return "books";
     }
 
