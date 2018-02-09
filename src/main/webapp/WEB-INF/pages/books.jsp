@@ -17,18 +17,18 @@
 <head>
     <title>Книжная полка</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/main.css'/>" />
     <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAWX29AFF1lABwqs4AJiDJAD1OVwAoKMYAZHeIAGh9fwBsfX8AU2uAAC4u2AACAwEAf7nXAIObogAGBAQAY3B0ACg0OAA2NdsAhb7dAHiOhQAJBhMAAw0fACAhJACUwNEALVJ/AFBkdQCOwuAAiqi3ACUmKgAvPVMAfLXVACQnNgBvhIMALzXKAH641QBspMcASk7VAEZZcAA1N9AAdYiPABs1aQAwOTYAk8XYAFZsagB8mJsAIiouAHq41gApQ10AgrDQAHu41gCKjpgAXIurADI11ABwpsUAhLzZADxNTgA4N9oAdqvCADo51wBflroALjc6AC83OgA6P9cAeZGQACgryQBRhKkAQVFaAGx/dgB/lZwALS7SAH2XogBnp8kAkLC/AD1GQwAxNNsAgbzaAJiyvAApTXMAcq/PAEJOUgCTv9oAmMHOACkn0AAJDx8ANT1EAJSpqwAwR0cAhLXPAIK20gCBt9UABAICAIOcoABzorsAhLrVAFqTswAxNDwAiqiyAH2RkgAtL7wAk8beAEFF2QB+lJsAV4qrAIOWmACVyOQALzHUAH253ABKUdAAVXaCAEx3lwCHt9YAZZKxACo8OgAoLsMAKibPAI3E4gBahKMAe5WfAC0t0gDr+fcAfLfXADJDTwBhjZoAgbfXAHGEiABKepgAcYiLAEdiYwBtpskAJR2+AHCLlAB1ipEAh6OlAGWTtQBodYAAFSU/AGyTtQB3kqAAobrOACwv0AAwLNkAf5mjAIC40gCBudUAAwQCAGepygCAuNsAaKfNADlMUACMnqAAZZSwAFFfbQB5kZUAQ1BTAFZrbQAdKDcANll3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAX0hVg0dhYxUGUIFUFgAAV09nECuZlnI/apFrG5IAAHEvNkktQChBjEsMcCMNAAAqMlhFRFaVBHcLD4ZvaQAAPpA6ByyEOIJGjVt5UVkAAENaXRQcTQhzNVMdkzd8AAAwXnUYXAptASISPTRkfgAAAo97fYWLGp07OWAfdJcAAIlMjiGamIeIJ2WcJDFuAABCE4BoZlKbHmwlD5QDPAAAJk4RYg5/SgAAAAApGRcAAAAAAAl2igUAAAAAAAAAAAAAAAAgLnozAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP3/AADAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgPEAAPD/AADw/wAA//8AAP//AAA=" rel="icon" type="image/x-icon" />
 </head>
 <body>
 <div id="header">
     <div class="top">
         <div id="logo">
-            <span class="image avatar48"><img src="${pageContext.request.contextPath}/resources/images/avatar.png" alt="" /></span>
+            <span class="image avatar48"><img src="<c:url value='/resources/images/avatar.png'/>" alt="" /></span>
         </div>
         <nav id="nav">
             <ul>
-                <li><a href="/books/list" id="main-link" class="skel-layers-ignoreHref"><span class="icon fa-star">Главная</span></a></li>
+                <li><a href="<c:url value='/books/list'/>" id="main-link" class="skel-layers-ignoreHref"><span class="icon fa-star">Главная</span></a></li>
                 <li><a href="#list" id="book-list-link" class="skel-layers-ignoreHref"><span class="icon fa-book">Книги</span></a></li>
                 <c:if test="${empty bookModel.author}">
                     <li><a href="#add" id="add-book-link" class="skel-layers-ignoreHref"><span class="icon fa-plus-square">Добавить</span></a></li>
@@ -54,7 +54,7 @@
             <header>
                 <h2>Список книг</h2>
             </header>
-            <form modelAttribute="searchString" action="/books/list" method="get">
+            <form modelAttribute="searchString" action="<c:url value='/books/list'/>" method="get">
                 <div class="row">
                     <div class="8u 12u">
                     <c:if test="${empty searchString}">
@@ -90,7 +90,7 @@
                                 <span class="icon fa-check-square"/>
                             </c:if>
                             <c:if test="${not book.readAlready}">
-                                <a href="/books/read/${book.id}"  class="skel-layers-ignoreHref"><span class="icon fa-square-o"/></a>
+                                <a href=<c:url value='"/books/read/${book.id}"'/>  class="skel-layers-ignoreHref"><span class="icon fa-square-o"/></a>
                             </c:if>
                             <a href="<c:url value='/books/remove/${book.id}' />"><span class="icon fa-trash"/></a>
                             <a href="<c:url value='/books/edit/${book.id}#add' />"><span class="icon fa-edit"/></a>
@@ -147,7 +147,7 @@
                     <h2>Обновление книги</h2>
                 </c:if>
             </header>
-            <form:form modelAttribute="bookModel" method="post" action="/books/addBook"  accept-charset="utf-8">
+            <form:form modelAttribute="bookModel" method="post" action="${pageContext.request.contextPath}/books/addBook"  accept-charset="utf-8">
                 <div class="row">
                     <form:input path="id" placeholder="ID" type="hidden" maxlength="100"/>
                     <div class="12u 12u"><form:input path="title" placeholder="Название" type="text" maxlength="100"/></div><br>
@@ -171,11 +171,11 @@
         </div>
     </section>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.scrolly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.scrollzer.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/skel.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/util.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery.scrolly.min.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery.scrollzer.min.js'/>"></script>
+<script src="<c:url value='/resources/js/skel.min.js'/>"></script>
+<script src="<c:url value='/resources/js/util.js'/>"></script>
+<script src="<c:url value='/resources/js/main.js'/>"></script>
 </body>
 </html>

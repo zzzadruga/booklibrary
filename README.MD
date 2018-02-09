@@ -25,6 +25,15 @@ A complete example for Spring MVC + Maven + Hibernate CRUD operation with search
 ```
 git clone git://github.com/zzzadruga/booklibrary.git
 ```
++ Open file hibernate-config.xml
+```
+booklibrary/src/main/webapp/WEB-INF/spring/hibernate-config.xml
+```
++ Edit user and password for database connection
+```
+<property name="user" value="root" />
+<property name="password" value="root" />
+```
 + Go to the root project directory (booklibrary)
 + Run the following maven command to download all dependent JARs and deploy project on tomcat8 server
 
