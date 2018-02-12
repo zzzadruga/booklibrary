@@ -6,10 +6,10 @@ A complete example for Spring MVC + Maven + Hibernate CRUD operation with search
 # Running the Application
 
 + Install Tomcat 8
-+ Create user with role "manager-script" in %CATALINA_HOME%/conf/tomcat-users.xml 
++ Create user with role "manager-gui" in %CATALINA_HOME%/conf/tomcat-users.xml 
 ```
-<role rolename="manager-script"/>
-<user username="admin" password="password" roles="manager-script"/>
+<role rolename="manager-gui"/>
+<user username="admin" password="password" roles="manager-gui"/>
 ```
 + Start Tomcat server. Run startup.bat in %CATALINA_HOME%/bin
 + Create server with name TomcatServer in Maven root directory %M2_HOME%/conf/settings.xml with your username and password
