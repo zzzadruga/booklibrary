@@ -2,7 +2,10 @@
 # Book Library
 
 A complete example for Spring MVC + Maven + Hibernate CRUD operation with search and pagination
-
+# Demo
+```
+http://zzzadruga.ru:8080/booklibrary/books/list
+```
 # Running the Application
 
 + Install Tomcat 8
